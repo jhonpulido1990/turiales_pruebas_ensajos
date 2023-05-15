@@ -1,0 +1,30 @@
+<button (click)="_router.navigate(['users/add'])">agregar jugador</button>
+<input [formControl]="searcher" type="text">
+<div *ngIf="players$ | async as players">
+  <pre>
+    <code>{{ players | json }}</code>
+  </pre>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>nombre</th>
+        <th>decks</th>
+        <th>acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let player of players; let i = index">
+        <th>{{ i }}</th>
+        <td>{{ player.name }}</td>
+        <td>
+          <li *ngFor="let deck of player.decks">{{ deck.name }} : {{ deck.cards }} cartas</li>
+        </td>
+        <td>
+          <button (click)="editPlayer(player)">editar</button>
+          <button (click)="deletePlayer(player)">eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

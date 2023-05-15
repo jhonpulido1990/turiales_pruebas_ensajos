@@ -1,0 +1,23 @@
+<form [formGroup]="form">
+  <p>editar jugador</p>
+  <div>
+    <label for="name">nombre del jugador</label>
+    <input id="name" type="text" formControlName="name" placeholder="nombre del jugador">
+    <button (click)="createDeck()">agregar deck</button>
+  </div>
+  <div formArrayName="decks" *ngFor="let item of decks; let i = index">
+    <form [formGroupName]="i">
+      <div>
+        <label for="name">Nombre</label>
+        <input type="text" id="name" formControlName="name" placeholder="Npmbre del deck">
+      </div>
+      <div>
+        <label for="cards">Cartas</label>
+        <input type="text" id="cards" formControlName="cards" placeholder="cantidad de cartas">
+      </div>
+    </form>
+  </div>
+</form>
+
+<button (click)="updatePlayer()">guardar</button>
+
